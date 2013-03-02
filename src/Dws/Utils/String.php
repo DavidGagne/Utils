@@ -36,28 +36,28 @@ class String
         });
         return implode('', $arr);
     }
-
+    /**
+     * un-camelize a string. 
+     * 
+     * Examples: 
+     * 
+     * <code>
+     * unCamelize('MyResource') == 'my-resource'
+     * </code>
+     * 
+     * @param string $string string to un-camelize
+     * @param string $sep separator on which split, default: ''
+     * @return type
+     */
     public static function unCamelize($string, $sep="")
     {
+
         $sub = substr($string,1);
+        $pattern = '/[A-Z]/';
+        $replacement = $sep . '${0}';
+        $seperated = preg_replace($pattern, $replacement, $sub);
+        return strtolower($string[0] . $seperated);
 
-        $capsCount = preg_match_all("/[A-Z]/",$sub, $matches);
-
-        if (!$capsCount) {
-
-            return $string;
-
-        } else {
-
-            $caps = $matches[0];
-            $seperated = array_map(function($x) use($sep) {
-                return $sep . $x;
-            },$caps);
-            $sub = str_replace($caps, $seperated, $sub);
-
-            return strtolower($string[0] . $sub);
-
-        }
     }
 
 }
