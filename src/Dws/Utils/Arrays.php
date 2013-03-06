@@ -122,7 +122,7 @@ class Arrays
      * @param $except mixed
      * @return array
      */
-    public function except($array, $except)
+    public static function except($array, $except)
     {
 
         $rtnArray = array();
