@@ -60,4 +60,9 @@ class String
 
     }
 
+    public static function toPhone($string)
+    {
+        return preg_replace("/[^0-9x]/", "", $string);
+    }
+
 }
