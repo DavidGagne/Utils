@@ -113,4 +113,31 @@ class Arrays
     {
         return self::shiftByKey($data, '_id');
     }
+
+    /**
+     * Return a copy of an array minus those
+     * provided by $except
+     * 
+     * @param $array array
+     * @param $except mixed
+     * @return array
+     */
+    public function except($array, $except)
+    {
+
+        $rtnArray = array();
+
+        if (!is_array($except)) {
+            $except = array($except);
+        }
+
+        foreach ($array as $key => $value) {
+            if (!in_array($key, $except)) {
+                $rtnArray[$key] = $value;
+            }
+        }
+
+        return $rtnArray;
+
+    }
 }
