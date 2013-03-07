@@ -141,7 +141,7 @@ class Arrays
 
     }
 
-    public function isAssociative($data)
+    public static function isAssociative($data)
     {
         return (is_array($data) && !is_numeric(implode("", array_keys($data))));
     }
