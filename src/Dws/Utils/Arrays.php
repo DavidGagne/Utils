@@ -140,4 +140,9 @@ class Arrays
         return $rtnArray;
 
     }
+
+    public function isAssociative($data)
+    {
+        return (is_array($data) && !is_numeric(implode("", array_keys($data))));
+    }
 }
