@@ -145,4 +145,11 @@ class Arrays
     {
         return (is_array($data) && !is_numeric(implode("", array_keys($data))));
     }
+
+    public static function isIndexed($data)
+    {
+        return (is_array($data) && is_numeric(implode("", array_keys($data))));
+    }
+
+
 }
