@@ -181,7 +181,7 @@ class Arrays
     * @param $default if the key doesn't exist exist it will be create with this value
     * 
     */
-    public static function updateKey($array, $key, $data, $default=null, $append=false)
+    public static function updateKey(&$array, $key, $data, $default=null, $append=false)
     {
 
         if (!array_key_exists($key, $array)) {
@@ -201,8 +201,6 @@ class Arrays
             $array[$key] = $data;    
         
         }
-
-        return $array;
 
     }
 
