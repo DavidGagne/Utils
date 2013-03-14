@@ -143,12 +143,67 @@ class Arrays
 
     public static function isAssociative($data)
     {
-        return (is_array($data) && !is_numeric(implode("", array_keys($data))));
+        
+        if (!is_array($data)) {
+            return false;
+        }
+
+        if (count($data) === 0) {
+            return false;
+        }
+
+        return !is_numeric(implode("", array_keys($data)));
+
     }
 
     public static function isIndexed($data)
     {
-        return (is_array($data) && is_numeric(implode("", array_keys($data))));
+        
+        if (!is_array($data)) {
+            return false;
+        }
+
+        if (count($data) === 0) {
+            return false;
+        }
+
+        return is_numeric(implode("", array_keys($data)));
+    
+    }
+    /**
+    * update the key of an array which $data
+    * if the key doesn't exist, create it with
+    * the default data
+    * @param $array the array who's key will be update
+    * @param $key the key to be updated
+    * @param $append if the data is any array, append data when true
+    * @param $data the updated data
+    * @param $default if the key doesn't exist exist it will be create with this value
+    * 
+    */
+    public static function updateKey($array, $key, $data, $default=null, $append=false)
+    {
+
+        if (!array_key_exists($key, $array)) {
+            $array[$key] = $default;
+        }
+
+        if (is_array($array[$key]) && $append) {
+            
+            if (!is_array($array[$key])) {
+                throw new UtilsException("array key $key is not of type array");
+            }
+            
+            $array[$key][] = $data;
+        
+        } else {
+        
+            $array[$key] = $data;    
+        
+        }
+
+        return $array;
+
     }
 
 
