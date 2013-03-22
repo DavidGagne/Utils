@@ -52,4 +52,9 @@ class FileSystem
 
     }
 
+    public static function extendPath($path, $extension)
+    {
+        return (substr($path, -1) != '/') ? $path . "/" . $extension : $path . $extension;
+    }
+
 }
