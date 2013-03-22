@@ -11,6 +11,28 @@ namespace Dws\Utils;
 class FileSystem
 {
 
+    public static function listDirectory($dir, $filesOnly = false, $onlyTypes = array())
+    {
+        
+
+        //@TODO add the onlyTypes support
+        $filelist = array();
+        $objects = glob($dir."*");
+        
+
+        foreach($objects as $name){
+
+            if (!$filesOnly || is_file($name)) {
+                $filelist[] = $name;
+            }
+
+        }
+
+        return $filelist;
+
+        
+    }
+
     public static function listDirectoryRecursive($dir, $filesOnly = false, $onlyTypes = array())
     {
 
