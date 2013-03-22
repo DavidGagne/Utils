@@ -3,6 +3,7 @@
 namespace Dws\Utils;
 
 
+
 /**
  * FileSystem utilities
  *
@@ -10,6 +11,8 @@ namespace Dws\Utils;
  */
 class FileSystem
 {
+
+    const LIST_FILES_ONLY = true;
 
     public static function listDirectory($dir, $filesOnly = false, $onlyTypes = array())
     {
