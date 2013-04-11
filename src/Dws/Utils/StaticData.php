@@ -10,12 +10,36 @@ namespace Dws\Utils;
 class StaticData
 {
 
-    public static function daysOfMonth($start=false, $end=false)
+    public static function daysOfMonth($start=1, $end=31)
     {
-        $rstart = $start ? $start : 1;
-        $rend = $end ? $end : 31;
 
-        return range($rstart, $rend);
+        $rtnArray = array();
+        $range = range($start, $end);
+
+        foreach ($range as $value) {
+            $rtnArray[$value] = $value;
+        }
+
+        return $rtnArray;
+    }
+
+    public static function years($decend = false, $start=1900, $end=null)
+    {
+        $rtnArray = array();
+
+        if (!$end) $end = date("Y");
+        $range = range($start, $end);
+
+        if ($decend) {
+            $range = array_reverse($range);    
+        }
+
+        foreach ($range as $value) {
+            $rtnArray[$value] = $value;
+        }
+
+        return $rtnArray;
+
     }
 
     public static function months($fromNow=false)
@@ -24,8 +48,8 @@ class StaticData
         $months = array();
         $currentMonth = $fromNow ? (int)date('m') : 1;
 
-        for($x = $currentMonth; $x < $currentMonth+12; $x++) {            
-            $months[$x-1] = date('F', mktime(0, 0, 0, $x, 1));
+        for ($x = $currentMonth; $x < $currentMonth+12; $x++) {            
+            $months[$x] = date('F', mktime(0, 0, 0, $x, 1));
         }
 
         return $months;
