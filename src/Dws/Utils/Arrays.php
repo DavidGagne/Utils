@@ -204,5 +204,32 @@ class Arrays
 
     }
 
+    /**
+     * Flatten a multi-dimensional associative array with dots.
+     * based on from laravel's array_dot, but treats indexed arrays
+     * as values so that they are not skipped
+     *
+     * @param  array   $array
+     * @param  string  $prepend
+     * @return array
+     */
+    public static function dot($array, $prepend = '')
+    {
+        $results = array();
+        foreach ($array as $key => $value) {
+
+            if (self::isAssociative($value)) {
+
+                $results = array_merge($results, self::dot($value, $prepend.$key.'.'));
+            }
+            else {
+                $results[$prepend.$key] = $value;
+            }
+
+        }
+
+        return $results;
+    }
+
 
 }
