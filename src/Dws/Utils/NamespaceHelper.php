@@ -7,4 +7,10 @@ class NamespaceHelper {
         return (substr($base, -1) != "\\") ? $base . "\\" . $extension : $base . $extension;
     }
 
+    public static function shortName($class)
+    {
+        $class = explode('\\', $class);
+        return end($class);
+    }
+
 }
