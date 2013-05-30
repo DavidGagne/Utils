@@ -13,4 +13,9 @@ class NamespaceHelper {
         return end($class);
     }
 
+    public static function classNamespace($class) {
+        $class = explode('\\', $class);
+        return  join('\\', array_slice($class, 0, -1));
+    }
+
 }
