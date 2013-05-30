@@ -57,7 +57,19 @@ class FileSystem
 
     public static function extendPath($path, $extension)
     {
-        return (substr($path, -1) != '/') ? $path . "/" . $extension : $path . $extension;
+        
+        /*
+        * make sure there are no leading diretory seperators
+        */
+        $extension = preg_replace("/^\/+/", "", $extension);
+        
+        /*
+        * make sure there are no trailing diretory seperators
+        */
+        $path = preg_replace("/\/+$/", "", $path);
+
+        return $path . "/" . $extension;
+
     }
 
 }
