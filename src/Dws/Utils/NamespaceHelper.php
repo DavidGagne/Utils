@@ -18,4 +18,11 @@ class NamespaceHelper {
         return  join('\\', array_slice($class, 0, -1));
     }
 
+    public static function exists($namespace, $declaredClasses) {
+        $namespace .= "\\";
+        foreach($declaredClasses as $name)
+            if(strpos($name, $namespace) === 0) return true;
+        return false;
+    }
+
 }
