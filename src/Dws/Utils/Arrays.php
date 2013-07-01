@@ -231,5 +231,36 @@ class Arrays
         return $results;
     }
 
+    /**
+    * take an indexed array of associative arrays
+    * and point one keys value to another keys value
+    */
+    public static function associate(array $data, $key, $val, $indexed = true)
+    {
+        
+        /*
+        * first make sure we are dealing with an indexed array
+        */
+        if (!self::isIndexed($data))
+            $data = array($data);
+
+        /*
+        * if an indexed array has been request
+        */
+        if ($indexed)
+            return array_map(function($x) use ($key,$val) { return array($x[$key] => $x[$val]);}, $data);
+
+        /*
+        * if an associative array has been requested
+        */
+        $return = array();
+
+        foreach ($data as $array) {
+            $return[$array[$key]] = $array[$val];      
+        }
+
+        return $return;
+    }
+
 
 }
